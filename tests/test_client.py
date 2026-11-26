@@ -58,7 +58,7 @@ def test_success_maps_fields_and_sends_credentials():
     assert c["headers"]["X-App-Key"] == "key_1"
     assert c["headers"]["X-App-Secret"] == "secret_1"
     assert c["headers"]["Content-Type"] == "application/json"
-    assert c["headers"]["User-Agent"] == "captchala-python/1.0.0"
+    assert c["headers"]["User-Agent"] == f"captchala-python/{captchala.__version__}"
     assert c["body"] == {"pass_token": "pt_abc", "keep_token": False}
     assert c["timeout"] == 5.0
 

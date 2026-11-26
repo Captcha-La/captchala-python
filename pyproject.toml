@@ -4,7 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "captchala"
-version = "1.0.0"
+# The version is set only in src/captchala/_version.py.
+dynamic = ["version"]
 description = "Official CaptchaLa server-side SDK for Python: validate CAPTCHA pass tokens, issue server tokens, moderate content."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -47,6 +48,9 @@ Changelog = "https://github.com/Captcha-La/captchala-python/blob/main/CHANGELOG.
 
 [tool.setuptools.packages.find]
 where = ["src"]
+
+[tool.setuptools.dynamic]
+version = { attr = "captchala._version.__version__" }
 
 [tool.setuptools.package-data]
 captchala = ["py.typed"]
