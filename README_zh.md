@@ -1,8 +1,8 @@
 # CaptchaLa Python SDK
 
-用于在 Python 服务端校验 CaptchaLa 令牌的 SDK。提供同步与异步客户端，带完整类型标注，并附带可选的 Django / Flask 集成。
+[English](https://github.com/Captcha-La/captchala-python/blob/main/README.md) · **简体中文** · [日本語](https://github.com/Captcha-La/captchala-python/blob/main/README.ja.md) · [한국어](https://github.com/Captcha-La/captchala-python/blob/main/README.ko.md) · [Español](https://github.com/Captcha-La/captchala-python/blob/main/README.es.md) · [Português (BR)](https://github.com/Captcha-La/captchala-python/blob/main/README.pt-BR.md) · [Deutsch](https://github.com/Captcha-La/captchala-python/blob/main/README.de.md)
 
-[English](README.md) | **简体中文**
+用于在 Python 服务端校验 CaptchaLa 令牌的 SDK。提供同步与异步客户端，带完整类型标注，并附带可选的 Django / Flask 集成。
 
 - [官网](https://captcha.la)
 - [文档](https://docs.captcha.la/sdk/server-python)

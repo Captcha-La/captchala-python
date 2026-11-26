@@ -1,8 +1,8 @@
 # CaptchaLa Python SDK
 
-Server-side SDK for validating CaptchaLa tokens from Python. Sync and async clients, typed, with optional Django and Flask helpers.
+**English** · [简体中文](https://github.com/Captcha-La/captchala-python/blob/main/README_zh.md) · [日本語](https://github.com/Captcha-La/captchala-python/blob/main/README.ja.md) · [한국어](https://github.com/Captcha-La/captchala-python/blob/main/README.ko.md) · [Español](https://github.com/Captcha-La/captchala-python/blob/main/README.es.md) · [Português (BR)](https://github.com/Captcha-La/captchala-python/blob/main/README.pt-BR.md) · [Deutsch](https://github.com/Captcha-La/captchala-python/blob/main/README.de.md)
 
-**English** | [简体中文](README_zh.md)
+Server-side SDK for validating CaptchaLa tokens from Python. Sync and async clients, typed, with optional Django and Flask helpers.
 
 - [Website](https://captcha.la)
 - [Documentation](https://docs.captcha.la/sdk/server-python)
