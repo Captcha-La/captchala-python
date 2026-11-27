@@ -9,6 +9,7 @@ import pytest
 
 import captchala
 from captchala import NetworkError, RequestTimeoutError
+from captchala.client import urllib_transport
 
 hits = []
 
@@ -61,9 +62,19 @@ def closed_port():
     return f"http://127.0.0.1:{port}"
 
 
-def client(base, **kw):
+def routed(api, backup):
+    """The API URLs are fixed inside the SDK; send them to local servers through the default urllib transport."""
+
+    def t(url, body, headers, timeout):
+        url = url.replace("https://verify.captcha.la", api).replace("https://fallbackapiv1.captchala.com", backup)
+        return urllib_transport(url, body, headers, timeout)
+
+    return t
+
+
+def client(base, backup=None, **kw):
     kw.setdefault("retry_backoff", 0)
-    return captchala.Client("k", "s", base_url=base, **kw)
+    return captchala.Client("k", "s", transport=routed(base, backup or base), **kw)
 
 
 def test_success_and_invalid(base):
@@ -94,7 +105,7 @@ def test_connection_refused():
 
 
 def test_client_only_total_outage(base):
-    down = captchala.Client("k", "s", base_url=closed_port(), backup_url=closed_port())
+    down = client(closed_port(), closed_port())
     assert down.validate("co_x").valid
     captchala.reset_reachability_cache()
-    assert not client(base, backup_url=closed_port()).validate("co_x").valid
+    assert not client(base, closed_port()).validate("co_x").valid

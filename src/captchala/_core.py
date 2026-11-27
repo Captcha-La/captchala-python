@@ -22,9 +22,9 @@ from .errors import (
 )
 from .results import Binding, CaptchaArgs, IssueResult, ModerationResult, ValidateResult
 
-DEFAULT_BASE_URL = "https://verify.captcha.la"
-#: Backup service that verifies ``offline_`` tokens issued during a service disruption.
-DEFAULT_BACKUP_URL = "https://fallbackapiv1.captchala.com"
+_API_URL = "https://verify.captcha.la"
+# Backup service that verifies ``offline_`` tokens issued during a service disruption.
+_BACKUP_URL = "https://fallbackapiv1.captchala.com"
 
 PREFIX_MAIN = "pt_"
 PREFIX_OFFLINE = "offline_"
@@ -102,8 +102,6 @@ class Settings:
         self,
         app_key: Optional[str],
         app_secret: Optional[str],
-        base_url: Optional[str],
-        backup_url: Optional[str],
         timeout: float,
         max_retries: int,
         retry_backoff: float,
@@ -118,8 +116,6 @@ class Settings:
             raise ConfigurationError("app_secret is required (or set CAPTCHALA_APP_SECRET)")
         self.app_key = key
         self._app_secret = secret
-        self.base_url = (base_url or DEFAULT_BASE_URL).rstrip("/")
-        self.backup_url = (backup_url or DEFAULT_BACKUP_URL).rstrip("/")
         self.timeout = float(timeout)
         self.max_retries = max(0, int(max_retries))
         self.retry_backoff = max(0.0, float(retry_backoff))
@@ -134,22 +130,22 @@ class Settings:
         }
 
     def __repr__(self) -> str:
-        return f"Settings(app_key={self.app_key!r}, base_url={self.base_url!r})"
+        return f"Settings(app_key={self.app_key!r})"
 
     @property
     def validate_url(self) -> str:
-        return f"{self.base_url}/v1/validate"
+        return f"{_API_URL}/v1/validate"
 
     @property
     def backup_validate_url(self) -> str:
-        return f"{self.backup_url}/api/validate"
+        return f"{_BACKUP_URL}/api/validate"
 
     @property
     def issue_url(self) -> str:
-        return f"{self.base_url}/v1/server/challenge/issue"
+        return f"{_API_URL}/v1/server/challenge/issue"
 
     def moderation_url(self, kind: str) -> str:
-        return f"{self.base_url}/v1/moderation/{kind}"
+        return f"{_API_URL}/v1/moderation/{kind}"
 
     def moderation_body(self, payload: Dict[str, Any], user_id: Optional[str]) -> Dict[str, Any]:
         # The moderation endpoints read the credentials from the body.

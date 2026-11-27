@@ -57,7 +57,6 @@ async with AsyncClient() as captchala:
 |---|---|---|
 | `app_key` | `$CAPTCHALA_APP_KEY` | App Key(ダッシュボードで取得) |
 | `app_secret` | `$CAPTCHALA_APP_SECRET` | App Secret(ダッシュボードで取得)。サーバー側でのみ使用 |
-| `base_url` | `https://verify.captcha.la` | API のベース URL |
 | `timeout` | `5.0` | 1 回の試行あたりのタイムアウト(秒) |
 | `max_retries` | `2` | 初回試行後のリトライ回数(`0` で無効) |
 | `retry_backoff` | `0.2` | 指数バックオフの基本待機時間(秒) |
@@ -195,7 +194,7 @@ t = captchala.moderation_text("user comment here")
 # settings.py
 CAPTCHALA_APP_KEY = "..."
 CAPTCHALA_APP_SECRET = "..."
-# optional: CAPTCHALA_BASE_URL, CAPTCHALA_TIMEOUT, CAPTCHALA_REJECT_CLIENT_ONLY
+# optional: CAPTCHALA_TIMEOUT, CAPTCHALA_REJECT_CLIENT_ONLY
 ```
 
 フォームフィールド。`cleaned_data` には `ValidateResult` が入ります。エラーには `user_message()` のテキストが使われ、API のエラーコードが `ValidationError` の code になります:

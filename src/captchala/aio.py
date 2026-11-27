@@ -35,8 +35,6 @@ class AsyncClient:
         app_key: Optional[str] = None,
         app_secret: Optional[str] = None,
         *,
-        base_url: Optional[str] = None,
-        backup_url: Optional[str] = None,
         timeout: float = 5.0,
         max_retries: int = 2,
         retry_backoff: float = 0.2,
@@ -45,21 +43,17 @@ class AsyncClient:
         http_client: Optional["httpx.AsyncClient"] = None,
     ) -> None:
         self._s = Settings(
-            app_key, app_secret, base_url, backup_url, timeout, max_retries, retry_backoff, reject_client_only, headers
+            app_key, app_secret, timeout, max_retries, retry_backoff, reject_client_only, headers
         )
         self._own_client = http_client is None
         self._http = http_client or httpx.AsyncClient(follow_redirects=False)
 
     def __repr__(self) -> str:
-        return f"AsyncClient(app_key={self.app_key!r}, base_url={self.base_url!r})"
+        return f"AsyncClient(app_key={self.app_key!r})"
 
     @property
     def app_key(self) -> str:
         return self._s.app_key
-
-    @property
-    def base_url(self) -> str:
-        return self._s.base_url
 
     async def aclose(self) -> None:
         if self._own_client:

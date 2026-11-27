@@ -5,7 +5,6 @@ Settings (all optional except the credentials, which fall back to the
 
     CAPTCHALA_APP_KEY = "..."
     CAPTCHALA_APP_SECRET = "..."
-    CAPTCHALA_BASE_URL = "https://verify.captcha.la"
     CAPTCHALA_TIMEOUT = 5.0
     CAPTCHALA_REJECT_CLIENT_ONLY = False
 
@@ -59,12 +58,11 @@ def get_client() -> Client:
     key = (
         getattr(settings, "CAPTCHALA_APP_KEY", None),
         getattr(settings, "CAPTCHALA_APP_SECRET", None),
-        getattr(settings, "CAPTCHALA_BASE_URL", None),
         getattr(settings, "CAPTCHALA_TIMEOUT", 5.0),
         getattr(settings, "CAPTCHALA_REJECT_CLIENT_ONLY", False),
     )
     if _client is None or key != _client_key:
-        _client = Client(key[0], key[1], base_url=key[2], timeout=key[3], reject_client_only=key[4])
+        _client = Client(key[0], key[1], timeout=key[2], reject_client_only=key[3])
         _client_key = key
     return _client
 

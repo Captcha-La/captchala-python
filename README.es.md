@@ -57,7 +57,6 @@ async with AsyncClient() as captchala:
 |---|---|---|
 | `app_key` | `$CAPTCHALA_APP_KEY` | App Key (del panel de control) |
 | `app_secret` | `$CAPTCHALA_APP_SECRET` | App Secret (del panel de control). Solo en el servidor |
-| `base_url` | `https://verify.captcha.la` | URL base de la API |
 | `timeout` | `5.0` | Tiempo de espera por intento, en segundos |
 | `max_retries` | `2` | Reintentos tras el primer intento (`0` los desactiva) |
 | `retry_backoff` | `0.2` | Retardo base del backoff exponencial, en segundos |
@@ -195,7 +194,7 @@ Los reintentos usan backoff exponencial con jitter. Los fallos de conexión y lo
 # settings.py
 CAPTCHALA_APP_KEY = "..."
 CAPTCHALA_APP_SECRET = "..."
-# optional: CAPTCHALA_BASE_URL, CAPTCHALA_TIMEOUT, CAPTCHALA_REJECT_CLIENT_ONLY
+# optional: CAPTCHALA_TIMEOUT, CAPTCHALA_REJECT_CLIENT_ONLY
 ```
 
 Campo de formulario. `cleaned_data` contiene el `ValidateResult`; los errores usan los textos de `user_message()` y el código de error de la API como código del `ValidationError`:

@@ -91,10 +91,13 @@ def test_sends_all_options():
     }
 
 
-def test_custom_base_url():
+def test_api_url_is_not_configurable():
     t = FakeTransport(ok(SUCCESS))
-    make(t, base_url="http://127.0.0.1:9999/").validate("pt_abc")
-    assert t.calls[0]["url"] == "http://127.0.0.1:9999/v1/validate"
+    with pytest.raises(TypeError):
+        make(t, base_url="http://127.0.0.1:9999/")
+    with pytest.raises(TypeError):
+        make(t, backup_url="https://backup.example")
+    assert not hasattr(make(t), "base_url")
 
 
 def test_invalid_token_is_clean_failure():
@@ -141,8 +144,8 @@ def test_degraded():
 
 def test_offline_goes_to_backup():
     t = FakeTransport(ok({"valid": True}))
-    r = make(t, backup_url="https://backup.example").validate("offline_abc")
-    assert t.calls[0]["url"] == "https://backup.example/api/validate"
+    r = make(t).validate("offline_abc")
+    assert t.calls[0]["url"] == "https://fallbackapiv1.captchala.com/api/validate"
     assert r.valid is True and r.offline is True
 
 

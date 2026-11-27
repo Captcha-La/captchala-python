@@ -1,8 +1,8 @@
 """Flask integration.
 
 Config keys: ``CAPTCHALA_APP_KEY``, ``CAPTCHALA_APP_SECRET`` (fall back to the
-environment variables of the same name), ``CAPTCHALA_BASE_URL``,
-``CAPTCHALA_TIMEOUT``, ``CAPTCHALA_REJECT_CLIENT_ONLY``.
+environment variables of the same name), ``CAPTCHALA_TIMEOUT``,
+``CAPTCHALA_REJECT_CLIENT_ONLY``.
 
 ::
 
@@ -67,7 +67,6 @@ class CaptchaLa:
             self._client = Client(
                 c.get("CAPTCHALA_APP_KEY"),
                 c.get("CAPTCHALA_APP_SECRET"),
-                base_url=c.get("CAPTCHALA_BASE_URL"),
                 timeout=c.get("CAPTCHALA_TIMEOUT", 5.0),
                 reject_client_only=c.get("CAPTCHALA_REJECT_CLIENT_ONLY", False),
             )

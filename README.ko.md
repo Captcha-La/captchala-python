@@ -57,7 +57,6 @@ async with AsyncClient() as captchala:
 |---|---|---|
 | `app_key` | `$CAPTCHALA_APP_KEY` | App Key (대시보드에서 발급) |
 | `app_secret` | `$CAPTCHALA_APP_SECRET` | App Secret (대시보드에서 발급). 서버 측에서만 사용 |
-| `base_url` | `https://verify.captcha.la` | API 기본 URL |
 | `timeout` | `5.0` | 시도당 타임아웃(초) |
 | `max_retries` | `2` | 첫 시도 이후의 재시도 횟수 (`0`이면 비활성화) |
 | `retry_backoff` | `0.2` | 지수 백오프의 기본 지연 시간(초) |
@@ -195,7 +194,7 @@ t = captchala.moderation_text("user comment here")
 # settings.py
 CAPTCHALA_APP_KEY = "..."
 CAPTCHALA_APP_SECRET = "..."
-# optional: CAPTCHALA_BASE_URL, CAPTCHALA_TIMEOUT, CAPTCHALA_REJECT_CLIENT_ONLY
+# optional: CAPTCHALA_TIMEOUT, CAPTCHALA_REJECT_CLIENT_ONLY
 ```
 
 폼 필드. `cleaned_data`에는 `ValidateResult`가 담깁니다. 오류에는 `user_message()` 텍스트가 사용되고, API 오류 코드가 `ValidationError`의 code가 됩니다:

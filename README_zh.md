@@ -57,7 +57,6 @@ async with AsyncClient() as captchala:
 |---|---|---|
 | `app_key` | `$CAPTCHALA_APP_KEY` | App Key（控制台获取） |
 | `app_secret` | `$CAPTCHALA_APP_SECRET` | App Secret（控制台获取），仅限服务端 |
-| `base_url` | `https://verify.captcha.la` | API 地址 |
 | `timeout` | `5.0` | 单次请求超时（秒） |
 | `max_retries` | `2` | 首次请求之后的重试次数（`0` 关闭重试） |
 | `retry_backoff` | `0.2` | 指数退避的基础间隔（秒） |
@@ -195,7 +194,7 @@ t = captchala.moderation_text("user comment here")
 # settings.py
 CAPTCHALA_APP_KEY = "..."
 CAPTCHALA_APP_SECRET = "..."
-# 可选：CAPTCHALA_BASE_URL、CAPTCHALA_TIMEOUT、CAPTCHALA_REJECT_CLIENT_ONLY
+# 可选：CAPTCHALA_TIMEOUT、CAPTCHALA_REJECT_CLIENT_ONLY
 ```
 
 表单字段。`cleaned_data` 中是 `ValidateResult`；错误文案来自 `user_message()`，`ValidationError` 的 code 为 API 错误码：

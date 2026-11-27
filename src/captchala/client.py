@@ -79,8 +79,6 @@ class Client:
         app_key: Optional[str] = None,
         app_secret: Optional[str] = None,
         *,
-        base_url: Optional[str] = None,
-        backup_url: Optional[str] = None,
         timeout: float = 5.0,
         max_retries: int = 2,
         retry_backoff: float = 0.2,
@@ -89,22 +87,18 @@ class Client:
         transport: Optional[Transport] = None,
     ) -> None:
         self._s = Settings(
-            app_key, app_secret, base_url, backup_url, timeout, max_retries, retry_backoff, reject_client_only, headers
+            app_key, app_secret, timeout, max_retries, retry_backoff, reject_client_only, headers
         )
         self._transport: Transport = transport or urllib_transport
         self._inflight: Dict[str, threading.Event] = {}
         self._inflight_lock = threading.Lock()
 
     def __repr__(self) -> str:
-        return f"Client(app_key={self.app_key!r}, base_url={self.base_url!r})"
+        return f"Client(app_key={self.app_key!r})"
 
     @property
     def app_key(self) -> str:
         return self._s.app_key
-
-    @property
-    def base_url(self) -> str:
-        return self._s.base_url
 
     def close(self) -> None:
         """No-op; present for symmetry with AsyncClient."""

@@ -9,14 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 - README in Japanese, Korean, Spanish, Portuguese (BR) and German, with a language switcher in every README.
-- Build: the version is set only in `src/captchala/_version.py`. No runtime changes.
+- Validation, token issuing and moderation always use the CaptchaLa API endpoints.
+- Build: the version is set only in `src/captchala/_version.py`.
 
 ## [1.0.0] - 2026-11-26
 
 ### Added
 - `Client` (sync, standard library only) and `AsyncClient` (asyncio, httpx via
   the `async` extra) with `validate()`, `issue_server_token()`,
-  `moderation_check()` and `moderation_text()`. Default base URL
+  `moderation_check()` and `moderation_text()`, calling
   `https://verify.captcha.la`.
 - `validate()` options: `client_ip`, `keep_token`, `expected_action`,
   `expected_hostname` (string or list), and the identity fields `bind_uid`,

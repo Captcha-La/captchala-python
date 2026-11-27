@@ -12,8 +12,6 @@ from __future__ import annotations
 from typing import Any
 
 from ._core import (
-    DEFAULT_BACKUP_URL,
-    DEFAULT_BASE_URL,
     ERROR_CLIENT_ONLY_POLICY,
     ERROR_CLIENT_ONLY_REJECTED,
     PREFIX_CLIENT,
@@ -61,8 +59,6 @@ __all__ = [
     "RateLimitError",
     "InvalidResponseError",
     "ValidationFailedError",
-    "DEFAULT_BASE_URL",
-    "DEFAULT_BACKUP_URL",
     "PREFIX_MAIN",
     "PREFIX_OFFLINE",
     "PREFIX_CLIENT",
